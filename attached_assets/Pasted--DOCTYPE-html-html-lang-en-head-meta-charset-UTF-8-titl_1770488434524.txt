@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>pobidoq – Accountability-RWA Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="pobidoq turns large public document sets into a living map of accountability using structured analysis, Human–AI Review, and on-chain accountability indices."
+  />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0a0c12;
+      --panel: #101321;
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.1);
+      --text: #f5f7ff;
+      --muted: #a0a4b8;
+      --border: #252a3f;
+      --danger: #f56565;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #15192b 0, #05060a 52%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 80px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #7fffd4, #276b63);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #020305;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 16px 40px rgba(0, 0, 0, 0.65);
+      font-size: 17px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .logo-text span:last-child {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.18s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 8px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: row;
+        gap: 14px;
+      }
+      nav {
+        display: none;
+      }
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-copy h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 16px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(79, 209, 197, 0.3);
+      color: #9ff5ea;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.16s ease-out, border-color 0.16s ease-out,
+        transform 0.08s ease-out, box-shadow 0.16s ease-out;
+      background: none;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4fd1c5, #2f855a);
+      color: #020305;
+      box-shadow: 0 15px 36px rgba(0, 0, 0, 0.75);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(13, 16, 30, 0.8);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(21, 25, 45, 0.95);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn span.icon {
+      margin-left: 6px;
+      font-size: 13px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-panel {
+      background: radial-gradient(circle at top left, #1f2438, #05060a);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 0 0,
+        rgba(79, 209, 197, 0.12),
+        transparent 58%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+    }
+
+    .panel-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(2, 5, 10, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    .panel-main {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.5fr);
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 720px) {
+      .panel-main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .panel-block {
+      background: rgba(9, 12, 24, 0.9);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px 10px 9px;
+    }
+
+    .panel-block h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .panel-block p {
+      font-size: 12px;
+      color: #e0e3ff;
+    }
+
+    .panel-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .metric {
+      padding: 7px 8px 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(5, 7, 16, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .metric-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .metric-value {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .metric-value span {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .timeline {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      border-left: 1px solid rgba(79, 209, 197, 0.45);
+      padding-left: 9px;
+    }
+
+    .timeline-step {
+      margin-bottom: 4px;
+    }
+
+    .timeline-step span {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 18px 0 4px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    section:first-of-type {
+      border-top: none;
+    }
+
+    section h2 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    section p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.7fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 840px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 12px 12px 11px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin-top: 6px;
+      padding-left: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 19, 33, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 840px) {
+      .audience-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .audience-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 10px 10px 9px;
+    }
+
+    .audience-card h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      color: #d1d4f3;
+    }
+
+    .audience-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .audience-card ul {
+      font-size: 12px;
+      padding-left: 16px;
+      color: var(--muted);
+    }
+
+    .principles-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .principles-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .principles-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .principle {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 9px;
+    }
+
+    .principle h3 {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .principle p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.5fr);
+      gap: 18px;
+      margin-top: 10px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 840px) {
+      .contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-info p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .contact-details {
+      font-size: 13px;
+    }
+
+    .contact-details div {
+      margin-bottom: 2px;
+    }
+
+    .contact-details span.label {
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .contact-form {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 10px 10px 11px;
+    }
+
+    .contact-form h3 {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .contact-form p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 6px 0 1px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      background: #050711;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 7px 8px;
+      font-size: 12px;
+      color: var(--text);
+      outline: none;
+      resize: vertical;
+      min-height: 0;
+    }
+
+    .contact-form textarea {
+      min-height: 72px;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(79, 209, 197, 0.35);
+    }
+
+    .contact-form .btn-primary {
+      margin-top: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">pq</div>
+        <div class="logo-text">
+          <span>pobidoq</span>
+          <span>Accountability‑RWA Platform</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#problem">Problem</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#who-for">Who it is for</a>
+        <a href="#principles">Principles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>
+            Turning public documents into a <span>living map of accountability</span>
+          </h1>
+          <p class="hero-sub">
+            pobidoq structures large investigation files, enforcement records, and inquiries into
+            addressable accountability units, reviewed through a Human–AI loop and exposed as
+            transparent on‑chain accountability indices.
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Accountability‑RWA</span>
+            <span class="badge">Human–AI Review</span>
+            <span class="badge">On‑chain indices</span>
+          </div>
+          <div class="hero-cta">
+            <a href="#tech" class="btn btn-primary">
+              For technical collaborators
+              <span class="icon">↗</span>
+            </a>
+            <a href="#investors" class="btn btn-ghost">
+              For investors and partners
+              <span class="icon">↗</span>
+            </a>
+          </div>
+          <p class="hero-note">
+            Built for journalists, researchers, advocacy groups, and infrastructure‑minded builders
+            who want accountability signals that outlive the news cycle.
+          </p>
+        </div>
+
+        <div class="hero-panel" aria-hidden="true">
+          <div class="panel-header">
+            <div class="panel-tag">Live accountability sketch</div>
+            <div class="panel-pill">Conceptual example</div>
+          </div>
+          <div class="panel-main">
+            <div class="panel-block">
+              <h3>Corpus snapshot</h3>
+              <p>
+                Regulatory enforcement documents ingested, segmented, and scored for accountability
+                status.
+              </p>
+              <div class="panel-metrics">
+                <div class="metric">
+                  <div class="metric-label">Documents</div>
+                  <div class="metric-value">128<span>cases</span></div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Units mapped</div>
+                  <div class="metric-value">46,320<span>segments</span></div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Reviewed</div>
+                  <div class="metric-value">61%<span>HAR coverage</span></div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Open issues</div>
+                  <div class="metric-value" style="color: var(--danger);">
+                    312<span>unresolved</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-block">
+              <h3>HAR loop</h3>
+              <div class="timeline">
+                <div class="timeline-step">
+                  <span>1.</span> AI surfaces timeline gaps and contradictions.
+                </div>
+                <div class="timeline-step">
+                  <span>2.</span> Journalists and researchers confirm, refute, or refine.
+                </div>
+                <div class="timeline-step">
+                  <span>3.</span> Consensus updates accountability units and indices.
+                </div>
+                <div class="timeline-step">
+                  <span>4.</span> On‑chain state reflects what is unresolved vs. clarified.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem">
+        <h2>The problem: documentation without durable accountability</h2>
+        <p>
+          High‑stakes investigations, regulatory actions, and inquiries generate millions of pages
+          of public documentation. Yet only a fraction is ever analyzed in depth, every newsroom or
+          NGO rebuilds timelines from scratch, and there is no shared, structured record of what
+          has been questioned, clarified, or resolved.
+        </p>
+        <div class="section-grid" style="margin-top: 12px;">
+          <div class="card">
+            <h3>Today’s reality</h3>
+            <ul>
+              <li>Document dumps dominate headlines, then disappear into PDFs and archives.</li>
+              <li>No common backbone for journalists, researchers, and advocacy groups.</li>
+              <li>Public cannot easily see progress from “exposed” to “addressed”.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What is missing</h3>
+            <ul>
+              <li>A shared map of unresolved vs. clarified accountability questions.</li>
+              <li>Incentives and infrastructure for careful long‑term review.</li>
+              <li>A transparent signal layer that others can plug into and trust.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works">
+        <h2>How pobidoq works</h2>
+        <p>
+          pobidoq turns static documentation into structured accountability units, reviews them
+          through a Human–AI loop, and records evolving accountability states as on‑chain indices.
+        </p>
+        <div class="section-grid">
+          <div class="card">
+            <h3>1. Ingest & structure</h3>
+            <p>
+              Public or partner‑provided documents are imported, cleaned, and broken into stable,
+              referenceable segments. Each segment is linked back to its source and versioned for
+              integrity.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Document ingestion</span>
+              <span class="pill">OCR & parsing</span>
+              <span class="pill">Segment IDs & hashes</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>2. Surface accountability questions</h3>
+            <p>
+              Software suggests potential issues—contradictions, timeline gaps, process failures,
+              recurring entities. These are prompts for human review, not verdicts.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Anomaly detection</span>
+              <span class="pill">Pattern mining</span>
+              <span class="pill">Issue candidates</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>3. Human–AI Review (HAR)</h3>
+            <p>
+              Journalists, researchers, advocacy groups, and vetted community members confirm,
+              refine, or dispute these questions. Their work is saved as structured review
+              artifacts.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Contradiction workflows</span>
+              <span class="pill">Process‑failure mapping</span>
+              <span class="pill">Network exposure</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>4. Accountability indices</h3>
+            <p>
+              Validated findings update accountability units and aggregated indices. These indices
+              are mirrored on‑chain so that rules and changes remain transparent and auditable.
+            </p>
+            <div class="pill-row">
+              <span class="pill">On‑chain state</span>
+              <span class="pill">Auditability</span>
+              <span class="pill">Composability</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="who-for">
+        <h2>Who it is for</h2>
+        <p>
+          pobidoq is designed as shared infrastructure for people and institutions who treat
+          accountability as serious, long‑horizon work.
+        </p>
+        <div class="audience-grid">
+          <div class="audience-card" id="tech">
+            <h3>Technical collaborators</h3>
+            <p>
+              Builders who want to co‑design the data model, Human–AI Review workflows, and
+              on‑chain accountability layer.
+            </p>
+            <ul>
+              <li>Blockchain / smart contract engineers</li>
+              <li>Applied AI / data pipeline engineers</li>
+              <li>Infra‑minded full‑stack developers</li>
+            </ul>
+          </div>
+          <div class="audience-card" id="investors">
+            <h3>Investors & partners</h3>
+            <p>
+              People who understand data and infrastructure plays and see long‑term value in
+              trustworthy accountability signals.
+            </p>
+            <ul>
+              <li>Data / infra‑focused investors</li>
+              <li>Civic tech and governance funds</li>
+              <li>Institutions exploring accountability metrics</li>
+            </ul>
+          </div>
+          <div class="audience-card">
+            <h3>Journalists & advocacy</h3>
+            <p>
+              Teams who want a durable evidence spine that outlives individual stories or
+              campaigns.
+            </p>
+            <ul>
+              <li>Investigative newsrooms and consortia</li>
+              <li>Advocacy and legal support organizations</li>
+              <li>Research labs and policy institutes</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="principles">
+        <h2>Principles & safeguards</h2>
+        <p>
+          pobidoq is built to be institution‑compatible and ethically grounded. The framing centers
+          on accountability, evidence, and process—not spectacle.
+        </p>
+        <div class="principles-list">
+          <div class="principle">
+            <h3>Victim protection</h3>
+            <p>
+              Focus on systems and institutions, not on exposing or re‑traumatizing individuals.
+              Sensitive content can be handled with strict access controls and redaction policies.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Evidence integrity</h3>
+            <p>
+              Every referenced snippet is traceable back to its source. Transformations such as OCR
+              are logged so that chains of custody and interpretation can be reconstructed.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Neutral framing</h3>
+            <p>
+              The language centers on accountability and process. Divergent analyses can coexist as
+              clearly attributed positions rather than being flattened into a single verdict.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Transparency of rules</h3>
+            <p>
+              How accountability scores are calculated and how rewards are distributed is encoded in
+              inspectable logic, with key components anchored in smart contracts.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Abuse resistance</h3>
+            <p>
+              Reputation, rate‑limiting, and dispute resolution are built into the review process
+              to resist spam, brigading, and targeted harassment.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Long‑term verifiability</h3>
+            <p>
+              On‑chain accountability indices and off‑chain logs are designed so that future
+              observers can audit how conclusions were reached and how they evolved.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact & next steps</h2>
+        <div class="contact">
+          <div class="contact-info">
+            <p>
+              pobidoq is at the stage where core architecture and the first accountability corpora
+              are being defined. The focus is on working with a small set of serious collaborators
+              who want to help shape the infrastructure from the ground up.
+            </p>
+            <p>
+              If you are interested in technical collaboration, strategic support, or piloting
+              pobidoq on a specific corpus, reach out with a short note on where you see the most
+              immediate impact.
+            </p>
+            <div class="contact-details">
+              <div>
+                <span class="label">Founder</span>Pranshu Sharma
+              </div>
+              <div>
+                <span class="label">Email</span>
+                <a href="mailto:pranshoe@gmail.com">pranshoe@gmail.com</a>
+              </div>
+              <div>
+                <span class="label">Location</span>Goa, India
+              </div>
+              <div>
+                <span class="label">Site</span>
+                <a href="https://pobidoq.com" target="_blank" rel="noreferrer"
+                  >pobidoq.com</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3>Share your interest</h3>
+            <p>
+              This form is illustrative. Hook it up to your preferred backend or form service to
+              capture responses.
+            </p>
+            <form>
+              <label for="role">I am primarily a</label>
+              <select id="role" name="role">
+                <option value="">Select one</option>
+                <option value="technical">Technical collaborator</option>
+                <option value="investor">Investor / strategic partner</option>
+                <option value="journalist">Journalist / researcher</option>
+                <option value="advocacy">Advocacy / civil society</option>
+                <option value="other">Other</option>
+              </select>
+
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" />
+
+              <label for="org">Organization</label>
+              <input id="org" name="org" type="text" placeholder="Where you work (optional)" />
+
+              <label for="message">What would you like to explore?</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="A sentence or two is enough to start."
+              ></textarea>
+
+              <button type="submit" class="btn btn-primary">Submit interest</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> pobidoq. All rights reserved.</div>
+      <div>Built around accountability, evidence, and verifiable process.</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").slice(1);
+        const el = document.getElementById(targetId);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
