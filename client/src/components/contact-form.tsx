@@ -59,7 +59,7 @@ export function ContactForm() {
               Get Early Access
             </h2>
             <p className="text-muted-foreground mb-8">
-              We are currently onboarding partners for our private beta. If you represent a public entity, research institution, or auditing firm, please reach out.
+              We are currently onboarding partners for our private beta. If you represent a public entity, research institution, newsroom, advocacy organization, or auditing firm, please reach out.
             </p>
 
             <div className="space-y-6">

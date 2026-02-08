@@ -17,16 +17,21 @@ export function Hero() {
           >
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase bg-[#4fd1c5]/10 text-[#4fd1c5] border border-[#4fd1c5]/20">
-                v2.0 Public Beta
+                PRIVATE BETA
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20">
                 On-Chain Verified
               </span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-              Radical transparency for <span className="text-[#4fd1c5]">public assets</span>
-            </h1>
+            <div className="flex flex-col gap-4">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+                Radical transparency for <span className="text-[#4fd1c5]">public accountability</span>
+              </h1>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg">
+                pobidoq structures large document corpora, runs Human–AI Review, and publishes accountability indices on-chain.
+              </p>
+            </div>
 
             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl">
               pobidoq turns large public document sets into a living map of accountability using structured analysis, Human–AI Review, and on-chain accountability indices.
@@ -123,7 +128,7 @@ export function Hero() {
                     <ShieldCheck className="w-8 h-8 text-[#4fd1c5]" />
                     <div>
                       <div className="text-xs text-[#4fd1c5] font-semibold uppercase tracking-wider">Trust Score</div>
-                      <div className="text-white/60 text-xs">Global Index Average</div>
+                      <div className="text-white/60 text-[10px]">Global Index Average</div>
                     </div>
                   </div>
                   <div className="text-2xl font-bold font-display text-white">94.2</div>

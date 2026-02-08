@@ -37,7 +37,7 @@ export function Navbar() {
             Sign In
           </Button>
           <Button className="bg-gradient-to-br from-[#4fd1c5] to-[#2f855a] text-[#020305] font-semibold hover:shadow-[0_0_20px_rgba(79,209,197,0.3)] hover:scale-105 transition-all duration-300 border-0">
-            Launch App
+            Request Access
           </Button>
         </div>
       </div>

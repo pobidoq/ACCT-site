@@ -1,0 +1,82 @@
+I need you to make the following changes to the pobidoq website to improve clarity, positioning, and credibility:
+
+## CRITICAL CHANGES (Priority 1)
+
+1. **Hero Section - Change Tagline**
+   - Find: "Radical transparency for public assets"
+   - Replace with: "Radical transparency for public accountability"
+   - Reason: We tokenize accountability state, not physical assets
+
+2. **Onboarding Form - Update Target Audience Language**
+   - Find: "If you represent a public entity, research institution, or auditing firm, please reach out."
+   - Replace with: "If you represent a public entity, research institution, newsroom, advocacy organization, or auditing firm, please reach out."
+   - This aligns with our actual target audiences (journalists, advocacy groups, researchers)
+
+3. **Remove "Made with Replit" Badge**
+   - Find and remove the "Made with Replit" badge/link from the footer
+   - Keep "© 2026 pobidoq" but remove the Replit branding
+
+## MEDIUM PRIORITY CHANGES (Priority 2)
+
+4. **Add Problem Section Before Infrastructure**
+   - Insert a new section BEFORE "The Infrastructure of Truth" with:
+   - Heading: "The Problem: Documentation Without Durable Accountability"
+   - Body text: "High-stakes investigations, regulatory actions, and public inquiries generate millions of pages of documentation. Yet only a fraction is ever deeply analyzed, every newsroom and NGO rebuilds timelines from scratch, and there is no shared, structured record of what has been questioned, clarified, or resolved. Public documentation exists, but accountability tracking does not."
+   - Keep it visually similar to other sections (same dark background, same typography)
+
+5. **Add Subtitle Below Hero Tagline**
+   - Below "Radical transparency for public accountability"
+   - Add this subtitle: "pobidoq structures large document corpora, runs Human–AI Review, and publishes accountability indices on-chain."
+   - Style: slightly smaller font, muted color (similar to other descriptive text)
+
+6. **Reorder Infrastructure Cards**
+   - Change the 6-card grid order to:
+     1. Structured Analysis (keep as-is)
+     2. Human–AI Review (keep as-is)
+     3. On-Chain Indices (keep as-is)
+     4. Permissioned Privacy (keep as-is)
+     5. Community Governance (keep as-is)
+     6. Real-time Dashboards (keep as-is)
+   - This creates better logical flow: input → process → output → safeguards → participation → usage
+
+7. **Update Footer**
+   - Current footer: "pobidoq © 2026"
+   - Expand to include:
+     - Email: pranshoe@gmail.com
+     - Links: PRIVACY | TERMS | TWITTER | GITHUB (can be placeholder links for now)
+   - Layout: Keep left-aligned "pobidoq © 2026", add links on the right side
+   - Style: Same dark theme, muted text color
+
+8. **Change "Launch App" Button**
+   - If there's no working app yet, change "Launch App" to "Request Access"
+   - Keep the same styling (teal button)
+
+## LOW PRIORITY POLISH (Priority 3)
+
+9. **Update Badge Text**
+   - Find: "V2.0 PUBLIC BETA"
+   - Replace with: "PRIVATE BETA" (more accurate) or "EARLY ACCESS" (less jargon)
+
+10. **Trust Score Context**
+   - If there's a "Trust Score 94.2" in the system status panel
+   - Add subtitle below it: "Global Index Average" or "Corpus Confidence Level"
+   - This makes the number more believable and contextual
+
+## DESIGN GUIDELINES
+
+- Keep the existing dark theme with teal accents
+- Maintain current typography, spacing, and card layouts
+- Don't change the overall structure or navigation
+- All text should remain professional, institutional-grade
+- Preserve the existing color scheme and visual hierarchy
+
+## TESTING
+
+After making changes, please verify:
+- Mobile responsiveness still works
+- All links function correctly
+- Form submission still works
+- Text is readable on all backgrounds
+- No layout breaks or visual glitches
+
+Make these changes incrementally and test after each priority level. Start with Priority 1, then move to Priority 2, then Priority 3.
