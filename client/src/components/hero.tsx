@@ -29,20 +29,31 @@ export function Hero() {
                 Radical transparency for <span className="text-[#4fd1c5]">public accountability</span>
               </h1>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg">
-                pobidoq structures large document corpora, runs Human–AI Review, and publishes accountability indices on-chain.
+                pobidoq turns large public document sets into a living map of accountability using structured analysis, Human–AI Review, and on-chain accountability indices.
               </p>
             </div>
 
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-xl">
-              pobidoq turns large public document sets into a living map of accountability using structured analysis, Human–AI Review, and on-chain accountability indices.
-            </p>
-
             <div className="flex flex-wrap gap-4 mt-2">
-              <Button size="lg" className="h-12 px-8 rounded-full bg-gradient-to-br from-[#4fd1c5] to-[#2f855a] text-[#020305] font-bold hover:shadow-[0_0_25px_rgba(79,209,197,0.4)] transition-all duration-300 border-0">
+              {/* Start Exploring - Scrolls to Contact Form */}
+              <Button 
+                size="lg" 
+                className="h-12 px-8 rounded-full bg-gradient-to-br from-[#4fd1c5] to-[#2f855a] text-[#020305] font-bold hover:shadow-[0_0_25px_rgba(79,209,197,0.4)] transition-all duration-300 border-0"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+              >
                 Start Exploring
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="h-12 px-8 rounded-full border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 backdrop-blur-sm text-white transition-all">
+              
+              {/* Read Whitepaper - Opens PDF in new tab */}
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="h-12 px-8 rounded-full border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 backdrop-blur-sm text-white transition-all"
+                onClick={() => window.open('/pobidoq-whitepaper.pdf', '_blank')}
+              >
                 Read Whitepaper
               </Button>
             </div>
@@ -77,7 +88,7 @@ export function Hero() {
                     <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">System Status</span>
                   </div>
                   <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] bg-green-500/10 text-green-400 border border-green-500/20">
-                    OPERATIONAL
+                    Conceptual Example
                   </span>
                 </div>
 

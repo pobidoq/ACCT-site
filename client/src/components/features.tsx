@@ -29,7 +29,7 @@ const features = [
   {
     icon: Users,
     title: "Community Governance",
-    description: "Token holders vote on data schemas and audit parameters. A decentralized approach to truth.",
+    description: "Token holders vote on data schemas and audit parameters to self govern. A decentralized approach to truth.",
     tags: ["DAO", "Voting", "Proposals"]
   },
   {
@@ -42,7 +42,7 @@ const features = [
 
 export function Features() {
   return (
-    <section className="py-24 bg-[#0a0c12]" id="methodology">
+    <section className="py-24 bg-[#0a0c12]" id="infrastructure">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-16">
           <h2 className="text-3xl font-display font-bold text-white mb-4">

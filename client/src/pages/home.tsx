@@ -22,17 +22,65 @@ export default function Home() {
               pobidoq
             </div>
             <div className="text-xs text-muted-foreground">
-              © 2026 pobidoq • pranshoe@gmail.com
+              © 2026 pobidoq • Built around accountability, evidence, and verifiable process.
             </div>
           </div>
           <div className="flex flex-wrap gap-6 text-xs text-muted-foreground uppercase tracking-wider font-medium">
-            <a href="#" className="hover:text-[#4fd1c5] transition-colors">Privacy</a>
+            {/* Email Contact */}
+            <a href="mailto:pranshoe@gmail.com" className="hover:text-[#4fd1c5] transition-colors">
+              Contact
+            </a>
             <span className="text-white/10 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-[#4fd1c5] transition-colors">Terms</a>
+            
+            {/* Privacy - Coming Soon */}
+            <button 
+              onClick={() => alert('Privacy Policy coming soon. For questions, email pranshoe@gmail.com')}
+              className="hover:text-[#4fd1c5] transition-colors cursor-pointer"
+            >
+              Privacy
+            </button>
             <span className="text-white/10 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-[#4fd1c5] transition-colors">Twitter</a>
+            
+            {/* Terms - Coming Soon */}
+            <button 
+              onClick={() => alert('Terms of Service coming soon. For questions, email pranshoe@gmail.com')}
+              className="hover:text-[#4fd1c5] transition-colors cursor-pointer"
+            >
+              Terms
+            </button>
             <span className="text-white/10 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-[#4fd1c5] transition-colors">GitHub</a>
+            
+            {/* LinkedIn - Your Profile */}
+            <a 
+              href="https://www.linkedin.com/company/nodemints" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#4fd1c5] transition-colors"
+            >
+              LinkedIn
+            </a>
+            <span className="text-white/10 hidden sm:inline">|</span>
+            
+            {/* Twitter/X - Create later */}
+            <a 
+              href="https://twitter.com/nodemints" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#4fd1c5] transition-colors"
+            >
+              Twitter
+            </a>
+            <span className="text-white/10 hidden sm:inline">|</span>
+            
+            {/* GitHub - Create organization/repo */}
+            <a 
+              href="https://github.com/pobidoq" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#4fd1c5] transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </div>
       </footer>

@@ -8,11 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
+  role: z.string().min(1, "Please select a role"),
   organization: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
@@ -26,6 +26,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
+      role: "",
       organization: "",
       message: "",
     },
@@ -33,17 +34,41 @@ export function ContactForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
     
-    console.log(values);
-    toast({
-      title: "Request Received",
-      description: "We'll be in touch with your access credentials shortly.",
-    });
-    
-    setIsSubmitting(false);
-    form.reset();
+    try {
+      // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT URL
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvCQ4cgAIDBBHuXlETGBSdVE-pbi5w_oepfTwE7XyLWoAV_gM0Ru13Om0OAwGhPPZ0/exec';
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          role: values.role,
+          organization: values.organization || 'N/A',
+          message: values.message,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      
+      toast({
+        title: "Request Received ✓",
+        description: "We'll be in touch within 24 hours.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please email pranshoe@gmail.com directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -122,6 +147,33 @@ export function ContactForm() {
                     </FormItem>
                   )}
                 />
+                
+                {/* NEW: Role Dropdown */}
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">I Am Primarily A</FormLabel>
+                      <FormControl>
+                        <select 
+                          className="w-full bg-[#101321] border border-white/10 focus:border-[#4fd1c5]/50 text-white rounded-md px-3 py-2"
+                          {...field}
+                        >
+                          <option value="">Select one</option>
+                          <option value="technical">Technical collaborator</option>
+                          <option value="investor">Investor / strategic partner</option>
+                          <option value="journalist">Journalist / researcher</option>
+                          <option value="advocacy">Advocacy / civil society</option>
+                          <option value="institution">Public institution</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
                 <FormField
                   control={form.control}
                   name="organization"
